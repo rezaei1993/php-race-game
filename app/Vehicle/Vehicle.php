@@ -13,7 +13,14 @@ class Vehicle
         $this->unit = $unit;
     }
 
-
+    /**
+     * @param float $distance
+     * @return float
+     */
+    public function getTimeToComplete(float $distance): float
+    {
+        return $distance / $this->convertMaxSpeedToKm();
+    }
     /**
      * @return float
      */
