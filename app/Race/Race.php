@@ -44,7 +44,34 @@ class Race
 
         $player1Vehicle = $this->promptForVehicle($vehicleChoices, 'Player 1');
         $player2Vehicle = $this->promptForVehicle($vehicleChoices, 'Player 2');
+
+        $this->race($player1Vehicle, $player2Vehicle);
+
     }
+
+    /**
+     * @param Vehicle $player1Vehicle
+     * @param Vehicle $player2Vehicle
+     * @return void
+     */
+    private function race(Vehicle $player1Vehicle, Vehicle $player2Vehicle): void
+    {
+        $time1 = $player1Vehicle->getTimeToComplete($this->distance);
+        $time2 = $player2Vehicle->getTimeToComplete($this->distance);
+
+        echo "Player 1:: {$player1Vehicle->name} finishes in {$time1} hours.\n";
+        echo "Player 2:: {$player2Vehicle->name} finishes in {$time2} hours.\n";
+
+        if ($time1 == $time2){
+            echo "Both reached the finish line at the same time!\n";
+            return;
+        }
+
+        $winner = ($time1 < $time2) ? $player1Vehicle->name : $player2Vehicle->name;
+
+        echo "{$winner} won!\n";
+    }
+
 
 
     /**
